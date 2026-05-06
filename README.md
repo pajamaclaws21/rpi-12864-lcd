@@ -132,7 +132,33 @@ printString3x5(string, leftX, topY, rotation = 0, use_memPlot = 0):
 ```
 
 ## About the screen & wiring
-You can find this on AliExpress or Amazon or anything; it is a 128x64 res LCD screen. They come in a variety of colors. This library is to assist with using the screen. Wiring can be found at docs/recommended_wiring.pdf and is taken from [this repository](https://github.com/panahbiru/raspberrypi-12864LCD). The screen datasheet can be found at Digole_12864_LCD.pdf.
+You can find this on AliExpress or Amazon or anything; it is a 128x64 res LCD screen. They come in a variety of colors. This library is to assist with using the screen.
+
+## Pinout
+The following pinout sets the screen in serial mode, which is used by this project. It is adapted from the original project's st7920.py as well as a wiring diagram provided by [this repository](https://github.com/panahbiru/raspberrypi-12864LCD) (able to be found in /docs) and a datasheet referenced by that wiring diagram (also able to be found in /docs).
+
+| LCD pin # | Pin name | Pin purpose | Connect to |
+|---|---|---|---|---|
+| 1 | VSS / GND | Ground | Ground |
+| 2 | VDD / ? | Power supply | 5V. Technically can take 4.5V to 5.5V |
+| 3 | VO | Maybe used to adjust contrast | Nothing, but maybe worth testing |
+| 4 | CS | See docs; "chip select - in serial communication" | 5V |
+| 5 | SID | Serial data input | GPIO7 (pin 26) |
+| 6 | SCLK | Serial clock | GPIO8 (pin 24) |
+| 7 | D0 | Data bit 0 | Nothing |
+| 8 | D1 | Data bit 1 | Nothing |
+| 9 | D2 | Data bit 2 | Nothing |
+| 10 | D3 | Data bit 3 | Nothing |
+| 11 | D4 | Data bit 4 | Nothing |
+| 12 | D5 | Data bit 5 | Nothing |
+| 13 | D6 | Data bit 6 | Nothing |
+| 14 | D7 | Data bit 7 | Nothing |
+| 15 | PSB | Interface selection | For serial, set to ground |
+| 16 | NC | Not connected | Nothing |
+| 17 | RST | Reset (a brief 0 will reset display) | GPIO25 (pin 22) |
+| 18 | VOUT | Voltage doubler output. Maybe adjusts contrast? | Nothing |
+| 19 | BLA | "Underground anode". Powers backlight(?) | 5V; LEDs take 60mA) |
+| 20 | BLK | "Underworld cathode". Serves as ground for backlight(?) | Ground |
 
 
 ## About the library

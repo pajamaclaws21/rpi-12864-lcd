@@ -5,15 +5,15 @@
 # 3  VO                     - 
 # 4  (RS Data/Command)      - +5V (CHIP SELECT - In serial communication)
 # 5  (R/W Read/Write)       - RasPi (Serial data) - GPIO7 (pin26) 
-# 6  (E - self.strobe)           - RasPi (serial CLOCK) - GPIO8 (pin24)
-# 7  (Data bit0)            - 
-# 8  (Data bit1)            - 
-# 9  (Data bit2)            - 
-# 10 (Data bit3)            - 
-# 11 (Data bit4)            - 
-# 12 (Data bit5)            - 
-# 13 (Data bit6)            - 
-# 14 (Data bit7)            - 
+# 6  (E - self.strobe)      - RasPi (serial CLOCK) - GPIO8 (pin24)
+# 7  (Data bit 0)           - 
+# 8  (Data bit 1)           - 
+# 9  (Data bit 2)           - 
+# 10 (Data bit 3)           - 
+# 11 (Data bit 4)           - 
+# 12 (Data bit 5)           - 
+# 13 (Data bit 6)           - 
+# 14 (Data bit 7)           - 
 # 15 (PSB)                  - GND - Set serial communication
 # 16 (NC)                   -
 # 17 (Reset)                - RasPi - GPIO25(pin22)
