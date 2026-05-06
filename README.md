@@ -2,7 +2,7 @@
 AKA RPi-12864-LCD-ST7920-lib
 
 ## Example
-Import the library from st7920.py. More documentation can be found there.
+Import the library from st7920.py.
 An example is as follows:
 ```
 from st7920 import ST7920
@@ -23,10 +23,11 @@ The original files can be found in the "old" directory.
 
 ## Documentation
 ### Original functions
+These functions are from the original Czech code by Milan Krúpa.
 Notes:
-* These translations are not very good.
+* These translations aren't very good.
 * The Y position is inverted --- (0,0) is the top left.
-* All the functions that have the use_memPlot argument, can use the memplot instead of plot; read self.memplot() explanation.
+* All the functions that have the use_memPlot argument can use the memplot instead of plot; read self.memplot() explanation.
 ```
 init()
    Basic GPIO port settings - just run it once at the beginning of the program
@@ -108,7 +109,7 @@ self.send2bytes(rs, byte1, byte2)
 ```
 
 ### New functions
-They are not present on the original code. They aren't so complicated, but are handy.
+Not present in the original Czech code; added by ftzi.
 ```
 drawGenericLine(fromX, fromY, toX, toY, style = 1, use_memPlot = 0)
    Draws a line from and to the specified coordinates. Based on this code: http://itsaboutcs.blogspot.com.br/2015/04/bresenhams-line-drawing-algorithm.html
@@ -135,7 +136,12 @@ printString3x5(string, leftX, topY, rotation = 0, use_memPlot = 0):
 You can find this on AliExpress or Amazon or anything; it is a 128x64 res LCD screen. They come in a variety of colors. This library is to assist with using the screen.
 
 ## Pinout
-The following pinout sets the screen in serial mode, which is used by this project. It is adapted from the original project's st7920.py as well as a wiring diagram provided by [this repository](https://github.com/panahbiru/raspberrypi-12864LCD) (able to be found in /docs) and a datasheet referenced by that wiring diagram (also able to be found in /docs). If your screen is in parallel mode (PSB=5V or high or 1 or whatever) then your pins will be a bit different.
+The following pinout sets the screen in serial mode, which is used by this project. If your screen is in parallel mode (PSB=5V or high or 1 or whatever) then your pins will be a bit different.
+
+It is adapted from:
+* The original project's st7920.py
+* A translated wiring diagram from astromik that was provided in English by [this repository](https://github.com/panahbiru/raspberrypi-12864LCD)
+* A datasheet referenced by that wiring diagram
 
 | LCD pin # | Pin name | Pin purpose | Connect to |
 | --- | --- | --- | --- |
@@ -162,4 +168,4 @@ The following pinout sets the screen in serial mode, which is used by this proje
 
 
 ## About the library
-This library was originally published [on Github](https://github.com/ftzi/RPi-12864-LCD-ST7920-lib) as a translation of Czech code from [astromik.org](http://www.astromik.org/raspi/42.htm), largely translated with [Google Translate](https://translate.google.com/translate?hl=&sl=cs&tl=en&u=http%3A%2F%2Fwww.astromik.org%2Fraspi%2F42.htm). The website can be found on [the Internet Archive](https://web.archive.org/web/20160323175419/http://www.astromik.org/raspi/42.htm). Also check out [here](http://www.astromik.org/raspi/glcd12864-zw-a.jpg)(?).
+This library was originally published [on Github](https://github.com/ftzi/RPi-12864-LCD-ST7920-lib) as a translation of Czech code from [astromik.org](https://www.astromik.org/malymenu/menuraspi.htm) (Ctrl+F for "128x64"), largely translated with Google Translate. The website can be found on the Internet Archive.

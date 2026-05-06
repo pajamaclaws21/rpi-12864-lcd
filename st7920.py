@@ -1,26 +1,3 @@
-# Display 12864 ZW display (128x64 point) SERIAL:
-# Display output (purpouse) -    connected to ...
-# 1  (GND)                  - RasPi (GPIO GND   - pin 6)
-# 2  (+ power supply)       - RasPi (GPIO +5V   - pin 1)
-# 3  VO                     - 
-# 4  (RS Data/Command)      - +5V (CHIP SELECT - In serial communication)
-# 5  (R/W Read/Write)       - RasPi (Serial data) - GPIO7 (pin26) 
-# 6  (E - self.strobe)      - RasPi (serial CLOCK) - GPIO8 (pin24)
-# 7  (Data bit 0)           - 
-# 8  (Data bit 1)           - 
-# 9  (Data bit 2)           - 
-# 10 (Data bit 3)           - 
-# 11 (Data bit 4)           - 
-# 12 (Data bit 5)           - 
-# 13 (Data bit 6)           - 
-# 14 (Data bit 7)           - 
-# 15 (PSB)                  - GND - Set serial communication
-# 16 (NC)                   -
-# 17 (Reset)                - RasPi - GPIO25(pin22)
-# 18 (Vout)                 - 
-# 19 (Podsvet - A)          - +5V (Or any LED brightness regulator - about 60mA)
-# 20 (Podsvet - K)          - RasPi (GPIO GND - pin 6)
-
 import os
 import time              # Various operations with time (pauses)
 import RPi.GPIO as GPIO  # It can only be used when attaching the E or RS signal to the GPIO in RasPi
