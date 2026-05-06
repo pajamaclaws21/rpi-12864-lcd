@@ -138,7 +138,7 @@ You can find this on AliExpress or Amazon or anything; it is a 128x64 res LCD sc
 The following pinout sets the screen in serial mode, which is used by this project. It is adapted from the original project's st7920.py as well as a wiring diagram provided by [this repository](https://github.com/panahbiru/raspberrypi-12864LCD) (able to be found in /docs) and a datasheet referenced by that wiring diagram (also able to be found in /docs).
 
 | LCD pin # | Pin name | Pin purpose | Connect to |
-|---|---|---|---|---|
+| --- | --- | --- | --- |
 | 1 | VSS / GND | Ground | Ground |
 | 2 | VDD / ? | Power supply | 5V. Technically can take 4.5V to 5.5V |
 | 3 | VO | Maybe used to adjust contrast | Nothing, but maybe worth testing |
