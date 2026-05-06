@@ -3,7 +3,7 @@
 # 1  (GND)                  - RasPi (GPIO GND   - pin 6)
 # 2  (+ power supply)       - RasPi (GPIO +5V   - pin 1)
 # 3  VO                     - 
-# 4  (RS Data/Command)      - +5V (CHIP SELECT - In serial communication) - GPIO25 (pin 22)
+# 4  (RS Data/Command)      - +5V (CHIP SELECT - In serial communication)
 # 5  (R/W Read/Write)       - RasPi (Serial data) - GPIO7 (pin26) 
 # 6  (E - self.strobe)           - RasPi (serial CLOCK) - GPIO8 (pin24)
 # 7  (Data bit0)            - 
