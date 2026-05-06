@@ -1,14 +1,12 @@
 # Raspberry Pi 12864 LCD library
-AKA RPi-12864-LCD-ST7920-lib
+AKA RPi-12864-LCD-ST7920-lib. This code is basically the same as the repository it was forked from; the major changes are to this file (hopefully it is easier to navigate the documentation).
 
 ## Example
-Import the library from st7920.py.
-An example is as follows:
 ```
-from st7920 import ST7920
+from st7920 import ST7920 # import the library
 import time 
 
-display=ST7920()
+display = ST7920()
 
 display.initTextMode()
 
@@ -99,7 +97,7 @@ self.drawVerticalLine(posX, fromY, toY, pattern, use_memPlot = 0)
   The "pattern" parameter is the same as in the previous case.
 
 self.loadBMP12864(fileName)
-  Load a two-color image from the file into the display. Beware of the correct file format!
+  Load a two-color image from the file into the display WITHOUT TESTING FOR CORRECT FORMAT.
 
 self.sendByte(rs, byte)
   Sends 1 byte to the display. The data (1) or the command (0) register is selected using the "rs" parameter.

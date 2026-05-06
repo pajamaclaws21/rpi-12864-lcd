@@ -202,7 +202,6 @@ class ST7920:
         #              Starts the default examples
         #==============================================================
 
-
         #- - - - - - - - - Writing text to the display - - - - - - - - - - - - - - - - - - - -  
         self.initTextMode()     # Switch to text mode
 
@@ -572,14 +571,14 @@ class ST7920:
 
         self.clearText()                # The display will be deleted separately
         self.initGraphicMode()
-        self.memdump()                # graphic se ale v tom pripade musi obnovit z pameti
+        self.memdump()                # in this case graphic must be restored from memory
         
         time.sleep(1)
         self.printStringGraphicMode("Graphic remains", 0, 56, True)   
         time.sleep(2)
         self.clearGraphic()
 
-    #- - - - - - - - - nahrani obrazku - - - - - - - - - - - - - - - - - -  
+    #- - - - - - - - - upload image - - - - - - - - - - - - - - - - - -  
 
         self.printStringGraphicMode("   display    " ,0,  0,False)  # 
         self.printStringGraphicMode("     file     " ,0, 10,False)  # 
@@ -597,14 +596,9 @@ class ST7920:
      
         exit(0)
 
-
-
-
     #==============================================================
     #               All subroutines are:
     #==============================================================
-
-
 
     #==============================================================
     # One of the 4 defined 16 x 16 pixel icons at position [x, y]
@@ -618,12 +612,6 @@ class ST7920:
         self.sendByte(0, 0b10000000 + shift)  # Address Counter to the required position
         self.send2bytes(1, 0, iconId * 2)
 
-
-
-
-
-
-
     #==============================================================
     # Draw a horizontal line point by point
     def drawHorizontalLine(self, posY, fromX = 0, toX=127, style = 1, use_memPlot = 0):  
@@ -634,7 +622,6 @@ class ST7920:
             
         for posX in range(fromX, toX + 1):
             customPlot(posX, posY, style)
-
 
     #==============================================================
     # Draw horizontal line from the edge to the edge after the bytes
@@ -649,7 +636,6 @@ class ST7920:
             self.send2bytes(1, pattern, pattern)     
             self.mapa[shift + r, posY, 0] = pattern 
             self.mapa[shift + r, posY, 1] = pattern 
-        
         
     #==============================================================
     # Draw a vertical line using bit masks
@@ -677,8 +663,6 @@ class ST7920:
                 
             customPlot(posX, posY, pixelStyle)
             
-
-
     #==============================================================
     # Displaying one self.printCharGraphicMode from the 8x8 point font
     # bytePosX = x self.printCharGraphicMode position (0 to 15, translated to multiples of 8 up to 128), posY = 0 to 63
@@ -734,8 +718,6 @@ class ST7920:
 
             posY = posY + 1   # Change the current micro-bars by one
 
-
-
     #==============================================================
     # Displaying several characters behind the 8x8 font
     # bytePosX = the position of the first self.printCharGraphicMode in the text is in column 0 to 15; posY = 0 to 63 (upper margin of the self.printCharGraphicMode)
@@ -756,10 +738,6 @@ class ST7920:
                 else:
                     self.printCharGraphicMode(ord(string[letter:letter + 1]), bytePosX, posY, invert) # ASCII charactery tisknout normalne
                 bytePosX = bytePosX + 1
-
-
-
-
 
     #==============================================================
     # Load 8x8 point font from file to list "self.font2 []"
@@ -786,8 +764,6 @@ class ST7920:
                 adresafontu = adresafontu + 1
         fontfile.close()
         
-
-
     #==============================================================
     # Subroutine for string display obrim font (8x16 point)
     # Font definition is a part of the ROM in the display - therefore not Czech characters
@@ -804,8 +780,6 @@ class ST7920:
             pomtext = self.txtmapa[row][:column + printCharGraphicMode] + string[printCharGraphicMode:printCharGraphicMode + 1] + self.txtmapa[row][column+printCharGraphicMode+1:]
             self.txtmapa[row] = pomtext            # Memory for text mode
 
-
-
     #==============================================================
     # Single self.printCharGraphicMode display in text mode
     def printCharTextMode(self, code, bytePosX, row): 
@@ -813,8 +787,6 @@ class ST7920:
         self.sendByte(1, code)                # The self.printCharGraphicMode code is sent to the display
         pomtext = self.txtmapa[row][:bytePosX] + chr(code) + self.txtmapa[row][bytePosX + 1:]
         self.txtmapa[row] = pomtext           # Memory for text mode
-
-
 
     #==============================================================
     # Print position setting for text mode (for characters 8x16 point)
@@ -836,7 +808,6 @@ class ST7920:
     # New function.
     # Draws a line from and to the specified coordinates.
     # Based on this code: http://itsaboutcs.blogspot.com.br/2015/04/bresenhams-line-drawing-algorithm.html
-    # NEW FUNCTION!
     def drawGenericLine(self, fromX, fromY, toX, toY, style = 1, use_memPlot = 0):
         if use_memPlot:
             customPlot = self.memplot
@@ -905,8 +876,7 @@ class ST7920:
             for yPos in range (fromY + 1, toY):
                 for xPos in range (fromX + 1, toX):
                     customPlot(xPos, yPos, style)
-            
-        
+                    
     #==============================================================
     # New function.
     # The arguments are self-explaining.
@@ -942,7 +912,6 @@ class ST7920:
     # leftX and topY are the "top-left" position of the first char that you want to print.
     # This function can be improved/optimized a lot. As I need this for yesterday, will leave the improvements for later.
     # As I usually prefer Performance over code readbility, I copied and changed the plotting section, to meet different rotations.
-    # NEW FUNCTION!
     def printString3x5(self, string, leftX, topY, rotation = 0, use_memPlot = 0):
         if use_memPlot:
             customPlot = self.memplot
@@ -974,7 +943,6 @@ class ST7920:
                         customPlot(actualX, actualY + row, self.char3x5[char][column][row])
                     actualX += 1
                     
-
         elif rotation == 1:# if rotation == 3 or any other number not cased in previous conditionals
             for char in string:
                 char = ord(char)
@@ -1037,9 +1005,7 @@ class ST7920:
                     for row in range(len(self.char3x5[char][column])):
                         customPlot(actualX - row, actualY, self.char3x5[char][column][row])
                     actualY += 1
-                
-        
-            
+                            
     #==============================================================
     # Uploading a two-color BMP image of a 128x64 point to a variable map []
     # CAUTION: Without any test for a correct BMP file format!
@@ -1051,12 +1017,11 @@ class ST7920:
         # The detailed BMP master file specification is here:
         # http://www.root.cz/clanky/graficky-format-bmp-pouzivany-a-pritom-neoblibeny
         # The start of the image data determines 4 bytes in a file in positions 10 to 13 (ten) from the beginning of the file
-        zacatekdat = ord(data[10]) + (ord(data[11]) * 256) + (ord(data[12]) * 65536) + (ord(data[13]) * 16777216)
-        byte = zacatekdat
+        byte = ord(data[10]) + (ord(data[11]) * 256) + (ord(data[12]) * 65536) + (ord(data[13]) * 16777216)
 
-        for mikrorow in range (63, -1, -1):  # Read data variables [] byte after byte and store in memory (map [])
-            posY = mikrorow
-            if (mikrorow > 31):
+        for microrow in range (63, -1, -1):  # Read data variables [] byte after byte and store in memory (map [])
+            posY = microrow
+            if (microrow > 31):
                 posY = posY - 32
                 shift = 8
             else:
@@ -1071,7 +1036,6 @@ class ST7920:
 
                 byte = byte + 2          # Passes to another double-out of graphical data
 
-
     #==============================================================
     # 1-point display / deletion / inversion at posX coordinates (0 to 127) and posY (0 to 63)
     def plot(self, posX, posY, style = 1):
@@ -1083,7 +1047,6 @@ class ST7920:
         if (posY > 63 ): posY = 63
         elif (posY < 0  ): posY = 0
 
-
         horiz = posX / 16 # Same as / 16
         if (posY >= 32):
             posY -= 32
@@ -1093,7 +1056,6 @@ class ST7920:
      
         self.send2bytes (0, 0b10000000 + posY, 0b10000000 + horiz)  # Setting the graphics address
 
-        
         originalLeftByte  = self.mapa[horiz, posY, 0]
         originalRightByte = self.mapa[horiz, posY, 1]
         
@@ -1121,10 +1083,6 @@ class ST7920:
 
         self.send2bytes(1, leftByte, rightByte)
         
-        
-
-
-
     #==============================================================
     # 1-pixel [display/deletion/inversion] at posX coordinates (0 to 127) and posY (0 to 63)
     def memplot(self, posX, posY, style = 1):
@@ -1141,9 +1099,6 @@ class ST7920:
 
         minibit = posX & 15    # Same as posX % 16 (my way looks CPU faster)
      
-        
-        
-
         if (minibit < 8):
             originalLeftByte  = self.mapa[horiz, posY, 0]
             if (style == 1):  # Draw a point
@@ -1155,7 +1110,6 @@ class ST7920:
 
             #rightByte = originalRightByte
             self.mapa[horiz, posY, 0] = leftByte
-            
             
         #Right byte
         else:
@@ -1170,22 +1124,15 @@ class ST7920:
             #leftByte = originalLeftByte
             self.mapa[horiz, posY, 1] = rightByte
 
-        
-        
-
-
     #==============================================================
     # Overwrite the graphical memory (variable map []) to the display
     def memdump(self):
-
-        for mikrorow in range(32):
-            self.send2bytes( 0, 0b10000000 + mikrorow , 0b10000000 )  # Setting the graphics address
+        for microrow in range(32):
+            self.send2bytes( 0, 0b10000000 + microrow , 0b10000000 )  # Setting the graphics address
             for horizontal in range (16):
-                leftByte  = self.mapa[horizontal , mikrorow , 0] 
-                rightByte = self.mapa[horizontal , mikrorow , 1]
+                leftByte  = self.mapa[horizontal , microrow , 0] 
+                rightByte = self.mapa[horizontal , microrow , 1]
                 self.send2bytes( 1, leftByte, rightByte)    
-                 
-                 
 
     #==============================================================
     # Delete graphical display time
@@ -1206,8 +1153,6 @@ class ST7920:
                 
         self.sendByte( 0, 0b00110110)  # function set (graphic ON) - smazany displej se zobrazi okamzite
 
-
-
     #==============================================================
     # Delete the text part of the display
     def clearText(self): 
@@ -1216,13 +1161,11 @@ class ST7920:
         self.sendByte(0, 0b00001100)  # displ.=ON , cursor=OFF , blink=OFF
         self.sendByte(0, 0b00000001)  # clear
 
-        # Erase the text memo
+        # Erase the text memory
         self.txtmapa[0] = "                "
         self.txtmapa[1] = "                "
         self.txtmapa[2] = "                "
         self.txtmapa[3] = "                "
-
-
 
     #==============================================================
     # Delete the graphical text and the text part of the display.
@@ -1231,8 +1174,6 @@ class ST7920:
         self.clearGraphic(pattern)
         self.clearText()
 
-
-
     #==============================================================
     # Set the display to the graphic mode
     def initGraphicMode(self):  
@@ -1240,8 +1181,6 @@ class ST7920:
         self.sendByte(0, 0b00110110)  # function set (extend instruction set)
         self.sendByte(0, 0b00110110)  # function set (graphic ON)
         self.sendByte(0, 0b00000010)  # nable CGRAM after being reset to BASIC instruction set
-
-
 
     #==============================================================
     # Set the display to text mode
@@ -1254,7 +1193,6 @@ class ST7920:
         self.sendByte(0, 0b00001100)  # displ.=ON , cursor=OFF , blink=OFF
         self.sendByte(0, 0b10000000)  # Address Counter na left horni roh
 
-
     #==============================================================
     # Definition of a graphical shape of 4 icons with the size of 16x16 points
     # Icon = Number Icons 0 to 3
@@ -1266,8 +1204,6 @@ class ST7920:
             leftByte  = self.iconData[dat] / 256
             rightByte = self.iconData[dat] % 256
             self.send2bytes(1, leftByte, rightByte)
-
-
 
     #==============================================================
     # Blink cursor after the last self.printCharGraphicMode entered in text mode
@@ -1313,8 +1249,6 @@ class ST7920:
 
         self.sendByte(0, 0b10000000 + shift)  # Address Counter to the desired position
 
-
-
     #==============================================================
     # Set the data pin for serial communication to "0" or "1"
     def setDataPin(self, bit):
@@ -1323,8 +1257,6 @@ class ST7920:
             GPIO.output(self.sData_pin, True)
         else:
             GPIO.output(self.sData_pin, False)
-
-
 
     #==============================================================
     # A short one-clock pulse on serialized communications
@@ -1407,7 +1339,7 @@ class ST7920:
         for i in range(7, 3, -1):         # And then top four bits from the first byte
             self.setDataPin(byte1 & (1 << i))    # The original code used "bit = (byte1 & (2**i)) >> i"
             self.strobe()                        # I removed the "bit" var (putted the expression directly at the function)
-                                                                            # And changed the expression. Well, thess improvements made code runs faster.
+                                                # And changed the expression. Well, thess improvements made code runs faster.
 
         self.setDataPin(0)                     # The next is the 4x "0"
         self.strobe4()
@@ -1434,19 +1366,17 @@ class ST7920:
         self.setDataPin(0)                        # Last separating sequence 4x "0"
         self.strobe4()
 
-
-
     #==============================================================
     # Send one byte after serial communication
     def sendByte(self, rs,  byte):
         self.setDataPin(1)                # the beginning of the communication is done with the "synchro" sequence of 5 singles
         self.strobe5()
-        
-        self.setDataPin(0)                    # Then the RW bit is sent (when set to "0")        
-        self.strobe()                                                                                  
-        self.setDataPin(rs)                    # Then send the RS bit (commands = "0"; data = "1")            
-        self.strobe()                                                                                                                                           
-        self.setDataPin(0)                     # Followed by zero bit                                                        
+
+        self.setDataPin(0)                    # Then the RW bit is sent (when set to "0")
+        self.strobe()
+        self.setDataPin(rs)                    # Then send the RS bit (commands = "0"; data = "1")
+        self.strobe()
+        self.setDataPin(0)                     # Followed by zero bit
         self.strobe()
         
         for i in range(7, 3, -1):     # And then up four bits of the sent byte
@@ -1462,4 +1392,3 @@ class ST7920:
 
         self.setDataPin(0)                      # To restart the separation sequence 4x "0"
         self.strobe4()
-
