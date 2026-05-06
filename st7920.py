@@ -185,6 +185,7 @@ class ST7920:
     cz2[223] = 223      # beta
 
     # Assign GPIO pin
+    rsDC_pin = 18       # (pin 18 = GPIO24)  = RS Data/Command
     sData_pin = 7       # (pin 26 = GPIO7)   = DATA    
     sClk_Pin = 8        # (pin 24 = GPIO8)   = CLOCK  
     reset_Pin = 25      # (pin 22 = GPIO25)  = RESET 
@@ -204,6 +205,10 @@ class ST7920:
         GPIO.setup(self.sClk_Pin, GPIO.OUT)     # (pin 24 = GPIO8)   = CLOCK
         GPIO.setup(self.reset_Pin, GPIO.OUT)    # (pin 22 = GPIO25)  = RESET
 
+        # trying to get data to send
+        GPIO.setup(self.rsDC_pin, GPIO.OUT)     # (pin 18 = GPIO24)  = RS Data/Command
+        GPIO.output(self.rsDC_pin, True)        # RSDC to "1"
+        
         GPIO.output(self.sData_pin, False)      # DATA to "0"
         GPIO.output(self.sClk_Pin, False)       # CLOCK to "0"
         GPIO.output(self.reset_Pin, False)      # RESET to "0"

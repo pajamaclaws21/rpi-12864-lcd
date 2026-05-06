@@ -132,7 +132,7 @@ printString3x5(string, leftX, topY, rotation = 0, use_memPlot = 0):
 ```
 
 ## About the screen & wiring
-You can find this on AliExpress or Amazon or anything; it is a 128x64 res LCD screen. They come in a variety of colors. This library is to assist with using the screen. Wiring can be found at recommended_wiring.pdf and is taken from [this repository](https://github.com/panahbiru/raspberrypi-12864LCD).
+You can find this on AliExpress or Amazon or anything; it is a 128x64 res LCD screen. They come in a variety of colors. This library is to assist with using the screen. Wiring can be found at docs/recommended_wiring.pdf and is taken from [this repository](https://github.com/panahbiru/raspberrypi-12864LCD). The screen datasheet can be found at Digole_12864_LCD.pdf.
 
 
 ## About the library
