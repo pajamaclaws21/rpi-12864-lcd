@@ -27,7 +27,7 @@ Notes:
 * These translations are not very good.
 * The Y position is inverted --- (0,0) is the top left.
 * All the functions that have the use_memPlot argument, can use the memplot instead of plot; read self.memplot() explanation.
-
+```
 init()
    Basic GPIO port settings - just run it once at the beginning of the program
 
@@ -56,15 +56,17 @@ self.printIcon(iconId, x, y)
   iconId = Icon identifier number 0 to 3
   x = column 0 to 7
   y = line 0 to 3
-
+```
 #### Graphic font 8x8 pixels
-  self.printCharGraphicMode(code, x, y, invert)
-    Displays one character with the ASCII code *code* at the the coordinates provided. x=0 to 15 (maybe 0 to 127?), y=0 to 63. When "inverse" = True, a dark self.printCharGraphicMode appears on a light background.
+```
+self.printCharGraphicMode(code, x, y, invert)
+  Displays one character with the ASCII code *code* at the the coordinates provided. x=0 to 15 (maybe 0 to 127?), y=0 to 63. When "inverse" = True, a dark self.printCharGraphicMode appears on a light background.
 
-  self.printStringGraphicMode(text, x, y, invert)
-    Displays text (multiple characters) at (x,y) (parameters same as previous).
-
+self.printStringGraphicMode(text, x, y, invert)
+  Displays text (multiple characters) at (x,y) (parameters same as previous).
+```
 #### Inside display font
+```
 self.printCharTextMode(code, x, y) 
   Displays one character in text mode at [x, y].
   Code is in the range 1 to 127 (from 32 to 126 it is a classic ASCII)
@@ -103,10 +105,11 @@ self.sendByte(rs, byte)
 
 self.send2bytes(rs, byte1, byte2)
   Sends 2 bytes at a time. The data (1) or the command (0) register is selected using the "rs" parameter.
+```
 
 ### New functions
 They are not present on the original code. They aren't so complicated, but are handy.
-
+```
 drawGenericLine(fromX, fromY, toX, toY, style = 1, use_memPlot = 0)
    Draws a line from and to the specified coordinates. Based on this code: http://itsaboutcs.blogspot.com.br/2015/04/bresenhams-line-drawing-algorithm.html
 
@@ -126,6 +129,7 @@ printString3x5(string, leftX, topY, rotation = 0, use_memPlot = 0):
     rotation = 2: text is turned 180degrees counter-clockwise (and keeps writing left)
     rotation = 3: text is turned 270degrees counter-clockwise (and keeps writing down)
     leftX and topY are the "top-left" position of the first char that you want to print.
+```
 
 ## About the screen & wiring
 You can find this on AliExpress or Amazon or anything; it is a 128x64 res LCD screen. They come in a variety of colors. This library is to assist with using the screen. Wiring can be found at recommended_wiring.pdf and is taken from [this repository](https://github.com/panahbiru/raspberrypi-12864LCD).
